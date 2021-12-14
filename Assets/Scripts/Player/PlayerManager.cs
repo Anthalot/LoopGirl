@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     public PlayerController playerController;
+    public ParticlesManager particlesManager;
 
     void Start()
     {
@@ -14,5 +15,6 @@ public class PlayerManager : MonoBehaviour
     void Update()
     {
         playerController.HandleAllMovement();
+        particlesManager.HandleAllParticles();
     }
 }

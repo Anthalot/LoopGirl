@@ -9,6 +9,7 @@ public class ParticlesManager : MonoBehaviour
     public ParticleSystem jumpParticles;
     public ParticleSystem landParticles;
     public ParticleSystem returnParticles;
+
     public void HandleAllParticles()
     {
         WalkParticles();
@@ -17,8 +18,8 @@ public class ParticlesManager : MonoBehaviour
 
     void WalkParticles()
     {
-        if(playerController.direction != 0 && !walkParticles.isPlaying) walkParticles.Play();
-        else walkParticles.Stop();
+        if(playerController.rb.velocity.x != 0 && playerController.Grounded() && !walkParticles.isPlaying) walkParticles.Play();
+        else if(!playerController.Grounded() || playerController.rb.velocity.x == 0) walkParticles.Stop();
     }
 
     public void JumpParticles()

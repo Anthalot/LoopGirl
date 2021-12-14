@@ -17,8 +17,11 @@ public class PlayerController : MonoBehaviour
     public float resetSpeed;
     public Transform startPoint;
     public bool returning;
+    [Header("Mirror")]
+    public float reflectiveForce;
     
     Vector2 resetVelocity = Vector3.zero;
+    float playerDirection;
 
     void Start()
     {
@@ -62,6 +65,8 @@ public class PlayerController : MonoBehaviour
     void Move()
     {
         rb.velocity = new Vector2(direction * velocity, rb.velocity.y);
+        if(rb.velocity.x > 0) playerDirection = 1;
+        else if (rb.velocity.x < 0) playerDirection = -1;
     }
 
     void Jump()
@@ -75,14 +80,33 @@ public class PlayerController : MonoBehaviour
         return grounded;
     }
 
+    void OnTriggerEnter2D(Collider2D collider2D)
+    {
+        if(collider2D.gameObject.layer == 7 && returning)
+        {
+            rb.AddForce(Vector2.right * playerDirection * reflectiveForce, ForceMode2D.Impulse);
+        }
+    }
+
     void OnCollisionEnter2D(Collision2D collision2D)
+    {
+        if(collision2D.gameObject.layer == 6)
+        {
+            Debug.Log(collision2D.GetContact(0).normal);
+            if(collision2D.GetContact(0).normal.x == 0 && collision2D.GetContact(0).normal.y == 1)
+            {
+                particlesManager.LandParticles();
+            }
+        }
+    }
+
+    void OnCollisionStay2D(Collision2D collision2D)
     {
         if(collision2D.gameObject.layer == 6)
         {
             if(collision2D.GetContact(0).normal.x == 0)
             {
                 grounded = true;
-                //particlesManager.LandParticles();
             }
         }
     }
@@ -92,7 +116,7 @@ public class PlayerController : MonoBehaviour
         if(collision2D.gameObject.layer == 6)
         {
             grounded = false;
-            //particlesManager.JumpParticles();
+            particlesManager.JumpParticles();
         } 
     }
 }
