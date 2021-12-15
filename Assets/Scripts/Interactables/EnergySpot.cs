@@ -5,6 +5,8 @@ using UnityEngine;
 public class EnergySpot : MonoBehaviour
 {
     public GameObject[] objects;
+    public SpriteRenderer spriteRenderer;
+    public Color onColor;
     void OnTriggerEnter2D(Collider2D collider2D)
     {
         if(collider2D.tag == "Player")
@@ -14,7 +16,7 @@ public class EnergySpot : MonoBehaviour
                 Destroy(g);
             }
 
-            Destroy(this.gameObject);
+            spriteRenderer.color = onColor;
         }
     }
 }

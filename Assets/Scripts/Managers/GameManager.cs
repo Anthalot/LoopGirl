@@ -6,17 +6,12 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public PlayerController playerController;
-    public GameObject player;
-    public GameObject trail;
     public int startTime;
     public Text textTimer;
     float currentTime;
-    bool trailSpawned;
-    GameObject instantiatedTrail;
     void Start()
     {
         currentTime = startTime;
-        trailSpawned = false;
     }
 
     void FixedUpdate()
@@ -24,19 +19,11 @@ public class GameManager : MonoBehaviour
         if(currentTime > 0)
         {
             currentTime -= Time.deltaTime;
-            trailSpawned = false;
         }
         else
         {
             currentTime = 0f;
-            playerController.Reset();
-            if(!trailSpawned)
-            {
-                instantiatedTrail = Instantiate(trail, player.transform.position, Quaternion.identity);
-                trailSpawned = true;
-            }
-
-            instantiatedTrail.transform.position = player.transform.position;
+            playerController.Return();
         }
 
         textTimer.text = "" + (int)currentTime;
