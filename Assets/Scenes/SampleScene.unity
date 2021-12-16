@@ -259,7 +259,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 123915540}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.42, y: -4.19, z: 0}
+  m_LocalPosition: {x: -0.91, y: -3.81, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 618720163}
@@ -3513,7 +3513,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2911022837229942561, guid: 814e2be3424897d4fa0b4bc84a592f73, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.27
+      value: -3.94
       objectReference: {fileID: 0}
     - target: {fileID: 2911022837229942561, guid: 814e2be3424897d4fa0b4bc84a592f73, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3549,7 +3549,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2911022837229942572, guid: 814e2be3424897d4fa0b4bc84a592f73, type: 3}
       propertyPath: m_Constraints
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2911022837229942573, guid: 814e2be3424897d4fa0b4bc84a592f73, type: 3}
       propertyPath: ElvSwitch

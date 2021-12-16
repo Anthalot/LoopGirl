@@ -23,7 +23,7 @@ public class Elevator : MonoBehaviour
     {
         if (ElvSwitch.elevatorActive)
         {
-
+            rbElevator.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
             rbElevator.velocity = Vector2.up * direction * velocity;
 
         }
