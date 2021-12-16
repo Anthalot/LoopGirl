@@ -9,29 +9,35 @@ public class SoundManager : MonoBehaviour
     public AudioSource landSound;
     public AudioSource deathSound;
     public AudioSource resetSound;
+    public AudioSource energySound;
 
     public void PlayJumpSound()
     {
-        //jumpSound.Play();
+        if(!jumpSound.isPlaying) jumpSound.Play();
     }
 
     public void PlayWalkSound()
     {
-        //walkSound.Play();
+        if(!walkSound.isPlaying) walkSound.Play();
     }
 
     public void PlayLandSound()
     {
-        //landSound.Play();
+        if(!landSound.isPlaying) landSound.Play();
     }
 
     public void PlayDeathSound()
     {
-        //deathSound.Play();
+        if(!deathSound.isPlaying) deathSound.Play();
     }
 
     public void PlayResetSound()
     {
-        //resetSound.Play();
+        if(!resetSound.isPlaying) resetSound.Play();
+    }
+
+    public void PlayEnergySound()
+    {
+        if(!energySound.isPlaying) energySound.Play();
     }
 }

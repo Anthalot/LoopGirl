@@ -7,11 +7,6 @@ public class PlayerManager : MonoBehaviour
     public PlayerController playerController;
     public ParticlesManager particlesManager;
 
-    void Start()
-    {
-        
-    }
-
     void Update()
     {
         playerController.HandleAllMovement();

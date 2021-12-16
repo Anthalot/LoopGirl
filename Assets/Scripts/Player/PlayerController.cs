@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
     GameObject instantiatedTrail;
     [Header("Mirror")]
     public float reflectiveForce;
+
+    bool walkCR;
     
 
     void Start()
@@ -60,7 +62,7 @@ public class PlayerController : MonoBehaviour
     void Direction()
     {
         direction = Input.GetAxisRaw("Horizontal");
-        if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)) soundManager.PlayWalkSound();
+        if((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)) && Grounded() && !walkCR) StartCoroutine("PlayWalkSound");
     }
 
     void Move()
@@ -114,7 +116,16 @@ public class PlayerController : MonoBehaviour
         if(collider2D.tag == "Enemy" && returning)
         {
             soundManager.PlayDeathSound();
+            gameManager.UpdateEnemies();
             Destroy(collider2D.gameObject);
+        }
+        if(collider2D.tag == "Energy")
+        {
+            soundManager.PlayEnergySound();
+        }
+        if(collider2D.tag == "Finish")
+        {
+            gameManager.NextLevel();
         }
     }
 
@@ -151,9 +162,19 @@ public class PlayerController : MonoBehaviour
         } 
     }
 
+    IEnumerator PlayWalkSound()
+    {
+        walkCR = true;
+        soundManager.PlayWalkSound();
+        yield return new WaitForSeconds(0.35f);
+        walkCR = false;
+        StopCoroutine(PlayWalkSound());
+    }
+
     IEnumerator MirrorBounce()
     {
         rb.gravityScale = 1f;
+        soundManager.PlayJumpSound();
         yield return new WaitForSeconds(1f);
         rb.velocity = Vector2.zero;
         rb.gravityScale = 0f;

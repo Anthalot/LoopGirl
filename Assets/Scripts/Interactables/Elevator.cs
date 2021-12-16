@@ -16,11 +16,8 @@ public class Elevator : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D collision2D)
     {
-        if(collision2D.gameObject.tag == "Waypoint")
-        {
-            direction = -direction;
-        }
-        
+        if(collision2D.gameObject.tag == "Player") return;
+        direction = -direction;   
     }
     void Update()
     {

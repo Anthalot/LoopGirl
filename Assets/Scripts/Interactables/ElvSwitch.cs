@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class ElvSwitch : MonoBehaviour
 {
-    // Start is called before the first frame update
+    
     public bool elevatorActive = false;
     public SpriteRenderer spriteRenderer;
     public Color onColor;
-    public float velocity;
 
 
 
