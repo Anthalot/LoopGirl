@@ -15,7 +15,7 @@ public class EnemyAI : MonoBehaviour
 
     void Update()
     {
-        rb.velocity = Vector2.right * direction * velocity;
+        rb.velocity = new Vector2(direction * velocity, rb.velocity.y);
     }
 
     void OnCollisionEnter2D(Collision2D collision2D)

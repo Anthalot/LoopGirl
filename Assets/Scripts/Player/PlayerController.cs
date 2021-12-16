@@ -123,7 +123,7 @@ public class PlayerController : MonoBehaviour
         {
             soundManager.PlayEnergySound();
         }
-        if(collider2D.tag == "Finish")
+        if(collider2D.tag == "Finish" && !returning)
         {
             gameManager.NextLevel();
         }
