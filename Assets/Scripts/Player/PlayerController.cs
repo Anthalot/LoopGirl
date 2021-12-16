@@ -106,13 +106,6 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(collider2D.transform.right * reflectiveForce, ForceMode2D.Impulse);
             StartCoroutine("MirrorBounce");
         }
-        if(collider2D.tag == "StartPos" && returning)
-        {
-            returning = false;
-            playerCollider.isTrigger = false;
-            rb.gravityScale = 1f;
-            gameManager.RestartTimer();
-        }
         if(collider2D.tag == "Enemy" && returning)
         {
             soundManager.PlayDeathSound();
@@ -126,6 +119,17 @@ public class PlayerController : MonoBehaviour
         if(collider2D.tag == "Finish" && !returning)
         {
             gameManager.NextLevel();
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D collider2D)
+    {
+        if(collider2D.tag == "StartPos" && returning)
+        {
+            returning = false;
+            playerCollider.isTrigger = false;
+            rb.gravityScale = 1f;
+            gameManager.RestartTimer();
         }
     }
 
