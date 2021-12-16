@@ -4,35 +4,32 @@ using UnityEngine;
 
 public class Elevator : MonoBehaviour
 {
-    public float speed = 0.2f;
-    public float range = 1f;
-    public GameObject elevator;
-    public bool elevatorActive = false;
-    public SpriteRenderer spriteRenderer;
-    public Color onColor;
-    void OnTriggerEnter2D(Collider2D collider2D)
+    int direction;
+    public Rigidbody2D rbElevator;
+    public float velocity;
+    public ElvSwitch ElvSwitch;
+    void Start()
     {
-        if (collider2D.tag == "Player")
-        {
-           
-                elevatorActive = true;
-            
-
-            spriteRenderer.color = onColor;
-        }
+        velocity = 2;
+        direction = 1;
+        rbElevator = this.GetComponent<Rigidbody2D>();
     }
-   
-    void Update()
+    void OnCollisionEnter2D(Collision2D collision2D)
     {
-        if (elevatorActive)
+        if(collision2D.gameObject.tag == "Waypoint")
         {
-
-            
-                float y = Mathf.PingPong(Time.time * speed, range) * 6-3;
-                elevator.transform.position = new Vector3(elevator.transform.position.x, y, elevator.transform.position.z);
-            
+            direction = -direction;
         }
         
     }
-   
+    void Update()
+    {
+        if (ElvSwitch.elevatorActive)
+        {
+
+            rbElevator.velocity = Vector2.up * direction * velocity;
+
+        }
+
+    }
 }
